@@ -1,0 +1,6 @@
+# Include your project-specific ignores in this file
+
+.sass-cache/
+.idea/
+.doc/
+node.modules/
