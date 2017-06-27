@@ -8,101 +8,109 @@
         let view = `<meta name="viewport" content="initial-scale=${scale},maximum-scale=${scale},minimum-scale=${scale}">`
         document.write(view)
         let width = document.documentElement.clientWidth
+        let height = document.documentElement.clientHeight
         let css = ` html{
                       font-size: ${width / 10}px;
-                    }`
+                    }
+                    .bgCover{
+                      height: ${height}px;
+
+                    }
+                    `
         document.write(`<style>${css}</style>`)
 
     </script>
     <link rel="stylesheet" href="css\song.css">
 </head>
 <body>
-<div class="page">
-    <div class="disc-container">
-        <img class="pointer" src="//s3.music.126.net/m/s/img/needle-ip6.png?be4ebbeb6befadfcae75ce174e7db862 " alt="">
-        <div class="disc">
-            <div class="icon-wrapper">
-                <svg class="icon icon-play">
-                    <use xlink:href="#icon-play"></use>
-                </svg>
-                <svg class="icon icon-pause">
-                    <use xlink:href="#icon-pause"></use>
-                </svg>
-            </div>
-            <img class="ring" src="//s3.music.126.net/m/s/img/disc-ip6.png?69796123ad7cfe95781ea38aac8f2d48" alt="">
-            <img class="light" src="//s3.music.126.net/m/s/img/disc_light-ip6.png?996fc8a2bc62e1ab3f51f135fc459577" alt="">
-            <img src="//os71std62.bkt.clouddn.com/wangjie.webp" alt="" class="cover">
-        </div>
-    </div>
-    <div class="song-description">
-        <h1>不烂漫罪名-王杰</h1>
-        <div class="lyric">
-            <div class="lines">歌词还没做啦！
-                <!--
-                作 曲 : 王杰
-                作 词 : 陈少琪
-                没有花这刹那被破坏吗
-                无野火都会温暖吗
-                无烟花一起庆祝好吗
-                若爱恋彷似戏剧那样假
-                如布景一切都美化
-                连相拥都参照主角吗
-                你说我未能定时
-                令你每天欢笑一次
-                我没说出一句美丽台词
-                是你心中一种缺陷定义
-                流进了眼角里的刺
-                为何不浪漫亦是罪名
-                为何不轰烈是件坏事情
-                从来未察觉我每个动作
-                没有声都有爱你的铁证
-                为何苦不浪漫亦是罪名
-                为何总等待着特别事情
-                从来未查觉我语气动听
-                在我呼吸声早已说明
-                甚么都会用一生保证
-
-                没有花这刹那被破坏吗
-                无野火都会温暖吗
-                无烟花一起庆祝好吗
-
-                若爱恋彷似戏剧那样假
-                如布景一切都美化
-                连相拥都参照主角吗
-
-                你说我未能定时
-                令你每天欢笑一次
-                我没说出一句美丽台词
-                是你心中一种缺陷定义
-                流进了眼角里的刺
-                为何不浪漫亦是罪名
-                为何不轰烈是极坏事情
-                从来未察觉我每个动作
-                没有声都有爱你的铁证
-                为何苦不浪漫亦是罪名
-                为何总等待着特别事情
-                从来未查觉我语气动听
-                在我呼吸声早已说明
-                甚么都会用一生保证
-
-                为何不浪漫亦是罪名
-                为何不轰烈是件坏事情
-                从来未察觉我每个动作
-                没有声都有爱你的铁证
-                为何苦不浪漫亦是罪名
-                为何总等待着特别事情
-                从来未擦觉我语气动听
-                在我呼吸声早已说明
-                甚么都会用一生保证
-            -->
-
-
+<div class="bgCover">
+    <div class="page">
+        <div class="disc-container">
+            <img class="pointer" src="//s3.music.126.net/m/s/img/needle-ip6.png?be4ebbeb6befadfcae75ce174e7db862 " alt="">
+            <div class="disc">
+                <div class="icon-wrapper">
+                    <svg class="icon icon-play">
+                        <use xlink:href="#icon-play"></use>
+                    </svg>
+                    <svg class="icon icon-pause">
+                        <use xlink:href="#icon-pause"></use>
+                    </svg>
+                </div>
+                <img class="ring" src="//s3.music.126.net/m/s/img/disc-ip6.png?69796123ad7cfe95781ea38aac8f2d48" alt="">
+                <img class="light" src="//s3.music.126.net/m/s/img/disc_light-ip6.png?996fc8a2bc62e1ab3f51f135fc459577" alt="">
+                <img src="//os71std62.bkt.clouddn.com/wangjie.webp" alt="" class="cover">
             </div>
         </div>
-    </div>
-    <div class="links">
-        <a href="#">打开</a>
-        <a class="main" href="#">下载</a>
+        <div class="song-description">
+            <h1>不烂漫罪名-王杰</h1>
+            <div class="lyric">
+                <div class="lines">歌词还没做啦！
+                    <!--
+                    作 曲 : 王杰
+                    作 词 : 陈少琪
+                    没有花这刹那被破坏吗
+                    无野火都会温暖吗
+                    无烟花一起庆祝好吗
+                    若爱恋彷似戏剧那样假
+                    如布景一切都美化
+                    连相拥都参照主角吗
+                    你说我未能定时
+                    令你每天欢笑一次
+                    我没说出一句美丽台词
+                    是你心中一种缺陷定义
+                    流进了眼角里的刺
+                    为何不浪漫亦是罪名
+                    为何不轰烈是件坏事情
+                    从来未察觉我每个动作
+                    没有声都有爱你的铁证
+                    为何苦不浪漫亦是罪名
+                    为何总等待着特别事情
+                    从来未查觉我语气动听
+                    在我呼吸声早已说明
+                    甚么都会用一生保证
+
+                    没有花这刹那被破坏吗
+                    无野火都会温暖吗
+                    无烟花一起庆祝好吗
+
+                    若爱恋彷似戏剧那样假
+                    如布景一切都美化
+                    连相拥都参照主角吗
+
+                    你说我未能定时
+                    令你每天欢笑一次
+                    我没说出一句美丽台词
+                    是你心中一种缺陷定义
+                    流进了眼角里的刺
+                    为何不浪漫亦是罪名
+                    为何不轰烈是极坏事情
+                    从来未察觉我每个动作
+                    没有声都有爱你的铁证
+                    为何苦不浪漫亦是罪名
+                    为何总等待着特别事情
+                    从来未查觉我语气动听
+                    在我呼吸声早已说明
+                    甚么都会用一生保证
+
+                    为何不浪漫亦是罪名
+                    为何不轰烈是件坏事情
+                    从来未察觉我每个动作
+                    没有声都有爱你的铁证
+                    为何苦不浪漫亦是罪名
+                    为何总等待着特别事情
+                    从来未擦觉我语气动听
+                    在我呼吸声早已说明
+                    甚么都会用一生保证
+                -->
+
+
+                </div>
+            </div>
+        </div>
+        <div class="links">
+            <a href="#">打开</a>
+            <a class="main" href="#">下载</a>
+        </div>
     </div>
 </div>
 <script src="//at.alicdn.com/t/font_9dyko39vtiifi529.js"></script>

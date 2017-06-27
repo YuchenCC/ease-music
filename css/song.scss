@@ -5,13 +5,15 @@
 }
 
 @keyframes circle{0% {transform: rotate(0deg); } 100% {transform: rotate(360deg); } }
-
+.bgCover {
+  background: transparent url(http://os71std62.bkt.clouddn.com/wangjie.jpg) no-repeat center;
+  background-size: auto;
+}
 .page{
   display:flex;
   flex-direction: column;
-  background: transparent url(http://os71std62.bkt.clouddn.com/wangjie.jpg) no-repeat center;
-  background-size:cover;
-  height: 100vh;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
 
   .disc-container{
     position:relative;
