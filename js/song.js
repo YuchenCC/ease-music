@@ -5,7 +5,7 @@ $.get("JSON1\\song.json").then(function(response){
     //console.log(song)
     let {url, name, lyric,albumImg,background} = song
     $albumImg = $('.disc-container>.disc>.cover').attr('src',song.albumImg)
-    $backgroundImg = $('.bgCover').css('background',`transparent url(${song.background}) no-repeat center`)
+    $backgroundImg = $('.bgCover').css('background','transparent url(' + song.background + ') no-repeat center')
                                 .css('background-size','cover')
     initplay(song.url)
     $songName = $('.song-description>h1').text(song.name)
