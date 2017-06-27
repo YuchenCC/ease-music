@@ -17,13 +17,23 @@ $.get("JSON1\\song.json").then(function(response){
 function initplay(url){
     let audio = document.createElement('audio')
     audio.src = url
+    $iconPlay = $(".icon-play")
+    $iconPause = $(".icon-pause")
     audio.oncanplay = function(){
-        audio.play()
-        $icon = $(".icon-pause")
+        $iconPlay.on('click',function(){
+            audio.play()
+            $iconPlay.attr('class','icon icon-play ')
+            $iconPause.attr('class','icon icon-pause active')
+        })
+        $iconPause.on('click',function(){
+            audio.pause()
+            $iconPlay.attr('class','icon icon-play active')
+            $iconPause.attr('class','icon icon-pause')
 
-        $icon.attr('class','icon icon-pause active').siblings().attr('class','icon icon-play')
-
+        })
 
     }
+
+
 
 }
