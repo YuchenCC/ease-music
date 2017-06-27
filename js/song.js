@@ -29,5 +29,9 @@ function initplay(url){
         $iconPlay.attr('class','icon icon-play active')
         $iconPause.attr('class','icon icon-pause')
     })
-    $iconPlay.click()
+    audio.addEventListener("canplay",function () {
+        console.log('play')
+        $iconPlay.click()
+
+    })
 }
