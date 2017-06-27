@@ -19,21 +19,15 @@ function initplay(url){
     audio.src = url
     $iconPlay = $(".icon-play")
     $iconPause = $(".icon-pause")
-    audio.oncanplay = function(){
-        $iconPlay.on('click',function(){
-            audio.play()
-            $iconPlay.attr('class','icon icon-play ')
-            $iconPause.attr('class','icon icon-pause active')
-        })
-        $iconPause.on('click',function(){
-            audio.pause()
-            $iconPlay.attr('class','icon icon-play active')
-            $iconPause.attr('class','icon icon-pause')
-
-        })
-
-    }
-
-
-
+    $iconPlay.on('click',function(){
+        audio.play()
+        $iconPlay.attr('class','icon icon-play ')
+        $iconPause.attr('class','icon icon-pause active')
+    })
+    $iconPause.on('click',function(){
+        audio.pause()
+        $iconPlay.attr('class','icon icon-play active')
+        $iconPause.attr('class','icon icon-pause')
+    })
+    $iconPlay.click()
 }
