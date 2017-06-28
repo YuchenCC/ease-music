@@ -60,7 +60,7 @@
           width: 50%;
           height: 50%;
           fill: white; }
-        .page .disc-container .disc .icon-wrapper .active {
+        .page .disc-container .disc .icon-wrapper .svgActive {
           display: block; }
       .page .disc-container .disc .ring {
         position: absolute;
@@ -73,12 +73,16 @@
         position: absolute;
         width: 100%;
         z-index: 3;
-        animation: circle 20s infinite linear; }
+        animation: circle 20s infinite linear;
+        animation-play-state: paused; }
       .page .disc-container .disc .cover {
         width: 4.90667rem;
         height: 4.90667rem;
         z-index: 1;
-        animation: circle 20s infinite linear; }
+        animation: circle 20s infinite linear;
+        animation-play-state: paused; }
+      .page .disc-container .disc .animationActive {
+        animation-play-state: running; }
   .page .song-description {
     flex-grow: 1;
     margin-top: 0.66667rem; }
@@ -87,31 +91,40 @@
       text-align: center;
       color: white;
       overflow: hidden;
-      font-size: 0.48rem;
+      font-size: 0.58667rem;
       white-space: nowrap;
       text-overflow: ellipsis;
-      line-height: 0.48rem; }
+      line-height: 0.58667rem; }
     .page .song-description .lyric {
-      height: 2.77333rem;
-      margin-top: 0.21333rem;
+      height: 2.93333rem;
+      margin-top: 0.37333rem;
       margin-bottom: 0.8rem;
       margin-left: auto;
       margin-right: auto;
       width: 7.89333rem;
       overflow: hidden; }
       .page .song-description .lyric .lines {
-        font-size: 0.42667rem;
-        line-height: 0.66667rem;
-        text-align: center;
-        color: white;
-        white-space: pre-line;
-        height: 100%; }
+        display: flex;
+        flex-direction: column;
+        transition: all 0.5s;
+        flex-shrink: 1;
+        transform: translateY(0); }
+        .page .song-description .lyric .lines span {
+          display: block;
+          flex-grow: 1;
+          font-size: 0.45333rem;
+          line-height: 0.8rem;
+          text-align: center;
+          color: #ccc;
+          padding: 0.10667rem; }
+        .page .song-description .lyric .lines .lyricActive {
+          color: white; }
   .page .links {
     height: 0.96rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 0.53333rem; }
+    margin-bottom: 1.06667rem; }
     .page .links a {
       border: 0.02667rem solid #D43C33;
       background: transparent;
