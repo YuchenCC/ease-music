@@ -73,8 +73,9 @@
         position: absolute;
         width: 100%;
         z-index: 3;
-        animation: circle 20s infinite linear;
-        animation-play-state: paused; }
+        top: 50%;
+        left: 50%;
+        transform: translate3D(-50%, -50%, 0); }
       .page .disc-container .disc .cover {
         width: 4.90667rem;
         height: 4.90667rem;
