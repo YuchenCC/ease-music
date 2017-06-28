@@ -1,36 +1,35 @@
-
+//  获取查询参数，识别播放音乐ID
 let id = parseInt(location.search.match(/\bid=([^&]*)/)[1],10)
+
+//  设置下一个歌曲链接，成型曲库id参数可设置随机数
 $next = $(`<a hidden href="./song.html?id=${id+1}">`)
 $next.appendTo($('.links'))
+
+//ajax请求音乐ID对应相关JSON数据
 $.get("JSON1\\song.json").then(function(response){
     let song = response.filter(object=>object.id === id)[0]
-    //console.log(song)
     let {url, name, lyric,albumImg,background} = song
     $albumImg = $('.disc-container>.disc>.cover').attr('src',song.albumImg)
     $backgroundImg = $('.bgCover').css('background','transparent url(' + song.background + ') no-repeat center')
                                 .css('background-size','cover')
     initplay(song.url)
     $songName = $('.song-description>h1').text(song.name)
-
-    //console.log(song.lyric)
     handleLyric(song.lyric)
-
 })
+//解析JSON中的歌词数据
 function handleLyric(lyric){
     let lyrics = lyric.split('↵')
     let lyricTimes = []
     let lyricTexts = []
-    //console.log(lyrics)
     lyrics.map((string)=>{
         let lyricTime = string.slice(1,10)
         let lyricText = string.slice(11)
         lyricTimes.push(lyricTime)
         lyricTexts.push(lyricText)
     })
-    //console.log(lyricTimes)
-    //console.log(lyricTexts)
     insertLyric(lyricTimes,lyricTexts)
 }
+//插入解析的歌词数据
 function insertLyric(lyricTimes,lyricTexts){
     $songLyric = $('.song-description>.lyric>.lines')
     for(let i = 0;i<lyricTimes.length;i++) {
@@ -43,10 +42,7 @@ function insertLyric(lyricTimes,lyricTexts){
         }
     }
 }
-
-
-
-
+//初始化播放
 function initplay(url){
     let audio = document.createElement('audio')
     audio.src = url
@@ -78,26 +74,17 @@ function initplay(url){
         console.log('ended,next')
         window.location.href = $next.attr('href')
     })
-
+    //播放时间对应歌词滚动高亮
     setInterval(function () {
-        //console.log('currentTime is' +  )
         $songLyricSpan = $('.song-description>.lyric>.lines>span')
         let musicTime = parseInt(audio.currentTime,10)
-        //console.log('musicTime = ' + musicTime)
-        //console.log($songLyric.children())
         $.map($songLyricSpan,function(span){
-            //console.log('musicTime = ' + musicTime)
             let spanTime = span.getAttribute('data-time')
             if (!spanTime) {return}
             let minites = parseInt(spanTime.match(/(\d*):(.*)/)[1],10)
             let seconds = parseInt(spanTime.match(/(\d*):(.*)/)[2],10)
             let time = minites * 60 + seconds
-            //console.log('time = ' + time)
-            //console.log('musicTime = ' + musicTime)
             if ( time === musicTime){
-                //console.log(spanTime)
-                //console.log('time = ' + time)
-                //console.log('musicTime = ' + musicTime)
                 return changeLyric(spanTime)
                 }
 
@@ -117,30 +104,10 @@ function initplay(url){
 
                         console.log($songLyric.css('transform'))
                     }
-
-
-                    //console.log(changeHeight)
                     $songLyricSpan.eq(i).addClass('lyricActive').siblings().removeClass('lyricActive')
                     $songLyric = $('.song-description>.lyric>.lines')
-                   // console.log($songLyric.css('transform'))
-
-
-                    //console.log(lasttrans)
-
                 }
             }
-
-
         }
-        //console.log(spanTime)
-        //let song = $songLyricSpan.filter(object=>{
-        //    console.log(object)
-
-            //console.log(object.attr)
-
-        //$.get("JSON1\\song.json").then(function(response){
-         //   let song = response.filter(object=>object.id === id)[0]
-            //console.log(song)
-        //console.log('duration is' + audio.duration )
     },1000)
 }

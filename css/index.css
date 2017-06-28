@@ -79,16 +79,18 @@ a {
           left: 0;
           transform: translateX(-6%); }
 
-.tabContent li .playlists {
+.tabContent .active {
+  display: list-item; }
+.tabContent .home .playlists {
   margin: 0.53333rem 0; }
-  .tabContent li .playlists h2 {
+  .tabContent .home .playlists h2 {
     font-weight: normal;
     font-size: 0.45333rem;
     line-height: 0.53333rem;
     height: 0.53333rem;
     position: relative;
     margin-left: 0.24rem; }
-    .tabContent li .playlists h2:before {
+    .tabContent .home .playlists h2:before {
       content: '';
       border: 0.02667rem solid #D43C33;
       left: 0;
@@ -96,18 +98,18 @@ a {
       height: 70%;
       margin-left: -0.24rem;
       top: 10%; }
-  .tabContent li .playlists ul {
+  .tabContent .home .playlists ul {
     margin: 0.53333rem 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between; }
-    .tabContent li .playlists ul li {
+    .tabContent .home .playlists ul li {
       width: 33%;
       margin-bottom: 0.53333rem; }
-      .tabContent li .playlists ul li img {
+      .tabContent .home .playlists ul li img {
         width: 100%;
         vertical-align: bottom; }
-      .tabContent li .playlists ul li p {
+      .tabContent .home .playlists ul li p {
         font-size: 0.34667rem;
         padding: 0.16rem 0.05333rem 0 0.16rem;
         display: -webkit-box;
@@ -115,14 +117,14 @@ a {
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis; }
-.tabContent li .lastestMusic h2 {
+.tabContent .home .lastestMusic h2 {
   font-weight: normal;
   font-size: 0.45333rem;
   line-height: 0.53333rem;
   position: relative;
   margin-left: 0.24rem;
   margin-bottom: 0.37333rem; }
-  .tabContent li .lastestMusic h2:before {
+  .tabContent .home .lastestMusic h2:before {
     content: '';
     border: 0.02667rem solid #D43C33;
     left: 0;
@@ -130,26 +132,26 @@ a {
     height: 70%;
     margin-left: -0.24rem;
     top: 10%; }
-.tabContent li .lastestMusic p {
+.tabContent .home .lastestMusic p {
   display: none; }
-  .tabContent li .lastestMusic p img {
+  .tabContent .home .lastestMusic p img {
     vertical-align: middle; }
-.tabContent li .lastestMusic .active {
+.tabContent .home .lastestMusic .active {
   display: flex;
   justify-content: center; }
-.tabContent li .lastestMusic #lastestMusic li {
+.tabContent .home .lastestMusic #lastestMusic li {
   margin-left: 0.24rem;
   border-bottom: 0.01333rem solid #E9E9EA; }
-  .tabContent li .lastestMusic #lastestMusic li a {
+  .tabContent .home .lastestMusic #lastestMusic li a {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 1.47547rem; }
-    .tabContent li .lastestMusic #lastestMusic li a div {
+    .tabContent .home .lastestMusic #lastestMusic li a div {
       display: flex;
       flex-direction: column;
       max-width: 8.61333rem; }
-      .tabContent li .lastestMusic #lastestMusic li a div h3 {
+      .tabContent .home .lastestMusic #lastestMusic li a div h3 {
         font-size: 0.42667rem;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -157,7 +159,7 @@ a {
         white-space: nowrap;
         color: black;
         line-height: 0.67547rem; }
-      .tabContent li .lastestMusic #lastestMusic li a div p {
+      .tabContent .home .lastestMusic #lastestMusic li a div p {
         font-size: 0.32rem;
         line-height: 0.48rem;
         color: #888;
@@ -166,22 +168,22 @@ a {
         font-weight: normal;
         white-space: nowrap;
         word-break: normal; }
-    .tabContent li .lastestMusic #lastestMusic li a svg {
+    .tabContent .home .lastestMusic #lastestMusic li a svg {
       margin: 0 0.26667rem;
       width: 0.58667rem;
       height: 0.58667rem;
       opacity: 0.3; }
-.tabContent li .art {
+.tabContent .home .art {
   margin-top: 0.05333rem;
   background: url("http://s3.music.126.net/m/s/img/recommand_bg_2x.png?d045fafc60e017b653f8065a87496922") no-repeat;
   background-size: cover; }
-  .tabContent li .art .logo {
+  .tabContent .home .art .logo {
     padding-top: 1.68rem; }
-    .tabContent li .art .logo svg {
+    .tabContent .home .art .logo svg {
       display: block;
       height: 1.17333rem;
       margin: 0 auto; }
-  .tabContent li .art a {
+  .tabContent .home .art a {
     margin-top: 0.4rem;
     margin-bottom: 0.13333rem;
     margin-left: auto;
@@ -195,10 +197,129 @@ a {
     font-size: 0.42667rem;
     text-align: center;
     line-height: 1.06667rem; }
-  .tabContent li .art .copyright {
+  .tabContent .home .art .copyright {
     text-align: center;
     color: #888;
     font-size: 0.32rem;
     transform: scale(0.75); }
+.tabContent .hot .searchBanner {
+  position: relative; }
+  .tabContent .hot .searchBanner .pic {
+    width: 100%; }
+  .tabContent .hot .searchBanner .bannerTitle {
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    z-index: 1; }
+    .tabContent .hot .searchBanner .bannerTitle .title {
+      width: 3.89333rem; }
+  .tabContent .hot .searchBanner p {
+    font-size: 0.26667rem;
+    color: white;
+    position: absolute;
+    top: 65%;
+    left: 6.5%;
+    z-index: 2; }
+.tabContent .hot .hotMusic ol li {
+  margin-top: -0.26667rem;
+  margin-left: 0.26667rem;
+  display: flex;
+  margin-bottom: 0.29333rem; }
+  .tabContent .hot .hotMusic ol li .hotOrder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.45333rem;
+    color: #999;
+    width: 0.74667rem;
+    margin-right: 0.13333rem; }
+  .tabContent .hot .hotMusic ol li .hotTop {
+    color: #df3436; }
+  .tabContent .hot .hotMusic ol li .hotDetail {
+    flex-grow: 1; }
+    .tabContent .hot .hotMusic ol li .hotDetail a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 1.47547rem;
+      border-bottom: 0.01333rem solid #E9E9EA; }
+      .tabContent .hot .hotMusic ol li .hotDetail a div {
+        display: flex;
+        flex-direction: column;
+        max-width: 8.61333rem; }
+        .tabContent .hot .hotMusic ol li .hotDetail a div h3 {
+          font-size: 0.45333rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-weight: normal;
+          white-space: nowrap;
+          color: black;
+          line-height: 0.67547rem; }
+        .tabContent .hot .hotMusic ol li .hotDetail a div p {
+          font-size: 0.32rem;
+          line-height: 0.48rem;
+          color: #888;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-weight: normal;
+          white-space: nowrap;
+          word-break: normal; }
+      .tabContent .hot .hotMusic ol li .hotDetail a svg {
+        margin: 0 0.26667rem;
+        width: 0.58667rem;
+        height: 0.58667rem;
+        opacity: 0.3; }
+.tabContent .hot .more {
+  color: #999;
+  text-align: center;
+  font-size: 0.42667rem;
+  height: 1.46667rem;
+  line-height: 1.46667rem; }
+
+/*.
+.hotMusic{
+  .hotOrder{
+
+  }
+
+  /*.hotDetail{
+    a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: rem(55.33);
+      div {
+        display: flex;
+        flex-direction: column;
+        max-width: rem(323);
+        h3 {
+          font-size: rem(16);
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-weight: normal;
+          white-space: nowrap;
+          color: black;
+          line-height: rem(25.33);
+        }
+        p {
+          font-size: rem(12);
+          line-height: rem(18);
+          color: #888;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-weight: normal;
+          white-space: nowrap;
+          word-break: normal;
+
+        }
+      }
+      svg {
+        margin: 0 rem(10);
+        width: rem(22);
+        height: rem(22);
+        opacity: 0.3;
+      }
+    }
+  }*/
 
 /*# sourceMappingURL=index.css.map */
