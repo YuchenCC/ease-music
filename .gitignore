@@ -2,5 +2,5 @@
 
 .sass-cache/
 .idea/
-.doc/
-node.modules/
+doc/
+node_modules/
