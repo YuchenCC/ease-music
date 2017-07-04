@@ -117,14 +117,19 @@ $.get("JSON1\\song.json",function (response, request) {
 
         +function () {
             let keys = []
-
+            $('.cancelIcon').hide()
             loadSearchKeys(response, keys)  //获取搜索关键字
             let timer = undefined
             $('#searchForm').on('input', 'input', function(e){
+                $('.cancelIcon').show()
                 searchKeys(e, timer, keys)
             })  //根据搜索关键字匹配并生成li
             $('.recomSearch>ol').on('click', 'li', function(e){
                 addHistory(e)
+            })
+            $('.cancelIcon').on('click',function(){
+                $('.inputCover').children('input').val('')
+                searchKeys(null)
             })
         }()
 
@@ -137,9 +142,15 @@ $.get("JSON1\\song.json",function (response, request) {
         }
 
         function searchKeys(event, timer, keys) {
-            let value = event.currentTarget.value.trim()
-            //console.log(value)
-            //console.log(keys)
+            let value
+            if(arguments[0] === null){
+                value = ''
+                console.log('null')
+            }
+            else{
+                value = event.currentTarget.value.trim()
+                console.log('have')
+            }
             if (value.length === 0) {
                 return initSearch()
             }
@@ -176,10 +187,7 @@ $.get("JSON1\\song.json",function (response, request) {
 
         function addHistory(event) {
             let searchRecord = $(event.currentTarget).attr('data-name')
-            let searchRecordAll = (JSON.parse(localStorage.getItem("searchRecordAll"))) || []
-            if (!(searchRecordAll instanceof Array)) {
-                searchRecordAll = []
-            }
+            let searchRecordAll = getlocalStorage('searchRecordAll')
             let n = 0
             searchRecordAll.forEach(string => {
                 if (string === searchRecord) {
@@ -192,29 +200,61 @@ $.get("JSON1\\song.json",function (response, request) {
             }
         }
     });
-
+function getlocalStorage(name){
+    let temp = localStorage.getItem(name)
+    if (temp === 'undefined'){
+        temp = '[]'
+        console.log('none')
+    }
+    return JSON.parse(temp)
+}
 +function(){   //动态获取搜索历史
     initSearch()
-    let historySearch = (JSON.parse(localStorage.getItem("searchRecordAll"))) || []
+    let historySearch = getlocalStorage('searchRecordAll')
+    console.log(historySearch)
     historySearch.forEach(string=>{  //未做数组去重
         loadHistoryList(string)
         return string
     })
+    $('.close').on('click',function(e){
+        let key = $(e.currentTarget).siblings('a').children().children().text()
+        console.log(key)
+        $(e.currentTarget).parent('li').remove()
+        let historyDel = getlocalStorage('searchRecordAll')
+        let afterDelKey = popKeyOfArray(historyDel,key)
+        localStorage.setItem('searchRecordAll', JSON.stringify(afterDelKey));
+
+    })
 }()
+
+function popKeyOfArray(array, key) {   //删除数组中指定的关键字
+        for(let i=0;i<array.length;i++) {
+            if (array[i] === key) {
+                let temp = array[0]
+                array[0] = array[i]
+                array[i] = temp
+                array.shift()
+                return array
+            }
+        }
+
+
+}
+
 
 function loadHistoryList(string) {
     $li = $(`<li>
                     <svg class="timer icon" aria-hidden="true">
-                      <use xlink:href="#icon-lishi1"></use>
+                        <use xlink:href="#icon-lishi1"></use>
                     </svg>
                     <a href="">
                         <div class="history">
                           <p>${string}</p>
-                          <svg class="close icon" aria-hidden="true">
-                            <use xlink:href="#icon-close"></use>
-                          </svg>
                         </div>
                     </a>
+                    <svg class="close icon" aria-hidden="true">
+                        <use xlink:href="#icon-close"></use>
+                    </svg>
                  </li>
             `)
     $li.appendTo($('.historySearch>ol'))

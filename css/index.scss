@@ -415,8 +415,9 @@ a {
             top: 50%;
             transform: translateY(-50%);
             margin-right: rem(7);
-            width: rem(15);
-            height: rem(15);
+            width: rem(30);
+            height: rem(30);
+            padding: rem(7) rem(7);
           }
         }
       }
@@ -478,16 +479,15 @@ a {
                 font-size: rem(14);
 
               }
-              .close {
-                width: rem(26);
-                margin-left: rem(14);
-                margin-right: rem(14);
-                height: rem(26);
-                fill: #bcbdbd;
-              }
             }
           }
-
+          .close {
+            width: rem(53);
+            height: rem(45);
+            fill: #bcbdbd;
+            padding: rem(10) rem(14);
+            border-bottom: rem(0.5) solid #e4e5e9;
+          }
         }
       }
     }

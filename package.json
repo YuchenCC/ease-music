@@ -1,0 +1,40 @@
+{
+  "name": "ease-music",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "dependencies": {
+    "scss": "^0.2.4"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.1",
+    "cssnano": "^3.10.0",
+    "imagemin-cli": "^3.0.0",
+    "postcss": "^6.0.5",
+    "postcss-cli": "^4.1.0",
+    "uglify-es": "^3.0.23"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "static-server",
+    "reset": "rm -rf build/; mkdir build",
+    "css": "postcss *.css -d build/",
+    "static-files": "cp *.html build/ && cp *.json build/",
+    "js": "uglifyjs index.js > build/index.js",
+    "images": "imagemin images/* --out-dir=build/images",
+    "build": "npm run reset && npm run static-files && npm run css && npm run js && npm run images"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YuchenCC/ease-music.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YuchenCC/ease-music/issues"
+  },
+  "homepage": "https://github.com/YuchenCC/ease-music#readme"
+}
