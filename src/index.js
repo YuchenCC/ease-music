@@ -197,6 +197,7 @@ $.get("JSON1\\song.json",function (response, request) {
             })
             if (n !== 1) {
                 searchRecordAll.push(searchRecord)
+                console.log('push'+ searchRecordAll)
                 localStorage.setItem('searchRecordAll', JSON.stringify(searchRecordAll));
             }
         }
@@ -246,7 +247,7 @@ function popKeyOfArray(array, key) {   //删除数组中指定的关键字
 
 
 function loadHistoryList(string) {
-    $li = $(`<li>
+    let $li = $(`<li>
                     <svg class="timer icon" aria-hidden="true">
                         <use xlink:href="#icon-lishi1"></use>
                     </svg>

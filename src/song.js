@@ -94,7 +94,7 @@ function initplay(url){
         })
         function changeLyric(spanTime){
             let $songLyric = $('.song-description>.lyric>.lines')
-            for(i=0 ;i<$songLyricSpan.length;i++){
+            for(let i=0 ;i<$songLyricSpan.length;i++){
                 if($songLyricSpan.eq(i).attr('data-time') == spanTime) {
                     //console.log(changeHeight)
                     let changeHeight = Math.ceil($songLyricSpan.eq(i-1).outerHeight())
