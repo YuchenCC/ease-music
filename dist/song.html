@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>歌曲播放</title>
+    <script>
+        let scale = 1.0
+        let view = `<meta name="viewport" content="initial-scale=${scale},maximum-scale=${scale},minimum-scale=${scale}">`
+        document.write(view)
+        let width = document.documentElement.clientWidth
+        let height = document.documentElement.clientHeight
+        let css = ` html{
+                      font-size: ${width / 10}px;
+                    }
+                    .bgCover{
+                      height: ${height}px;
+
+                    }
+                    `
+        document.write(`<style>${css}</style>`)
+
+    </script>
+</head>
+<body>
+<div class="bgCover">
+    <div class="page">
+        <div class="disc-container">
+            <img class="pointer" src="//s3.music.126.net/m/s/img/needle-ip6.png?be4ebbeb6befadfcae75ce174e7db862 " alt="">
+            <div class="disc">
+                <div class="icon-wrapper">
+                    <svg class="icon icon-play svgActive">
+                        <use xlink:href="#icon-play"></use>
+                    </svg>
+                    <svg class="icon icon-pause">
+                        <use xlink:href="#icon-pause"></use>
+                    </svg>
+                </div>
+                <img class="ring " src="//s3.music.126.net/m/s/img/disc-ip6.png?69796123ad7cfe95781ea38aac8f2d48" alt="">
+                <img class="light animationActive" src="//s3.music.126.net/m/s/img/disc_light-ip6.png?996fc8a2bc62e1ab3f51f135fc459577" alt="">
+                <img src="//os71std62.bkt.clouddn.com/wangjie.webp" alt="" class="cover animationActive">
+            </div>
+        </div>
+        <div class="song-description">
+            <h1>不烂漫罪名-王杰</h1>
+            <div class="lyric">
+                <div class="lines">
+
+                </div>
+            </div>
+        </div>
+        <div class="links">
+            <a href="#">打开</a>
+            <a class="main" href="#">下载</a>
+
+        </div>
+    </div>
+</div>
+<script src="//at.alicdn.com/t/font_9dyko39vtiifi529.js"></script>
+<script src="bundle2.js"></script>
+</body>
+</html>

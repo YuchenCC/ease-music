@@ -7,24 +7,40 @@
     "doc": "doc"
   },
   "dependencies": {
+    "jquery": "^3.2.1",
+    "lodash": "^4.17.4",
     "scss": "^0.2.4"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.1",
+    "autoprefixer-loader": "^3.2.0",
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-es2015": "^6.24.1",
+    "css-loader": "^0.28.4",
     "cssnano": "^3.10.0",
+    "html-webpack-plugin": "^2.29.0",
     "imagemin-cli": "^3.0.0",
+    "open-browser-webpack-plugin": "0.0.5",
     "postcss": "^6.0.5",
     "postcss-cli": "^4.1.0",
-    "uglify-es": "^3.0.23"
+    "style-loader": "^0.18.2",
+    "uglify-es": "^3.0.23",
+    "uglify-js": "^3.0.23",
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.5.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "static-server",
-    "reset": "rm -rf build/; mkdir build",
-    "css": "postcss *.css -d build/",
-    "static-files": "cp *.html build/ && cp *.json build/",
-    "js": "uglifyjs index.js > build/index.js",
-    "images": "imagemin images/* --out-dir=build/images",
+    "wp": "webpack",
+    "reset": "rm -rf build && mkdir build",
+    "css": "postcss css/*.css -d build/",
+    "static-files": "cp *.html build && mkdir build/JSON1 && cp json1/*.json build/json1",
+    "js": "mkdir build/js && uglifyjs js/*.js > build/js/",
+    "images": "imagemin img/* --out-dir=build/img",
     "build": "npm run reset && npm run static-files && npm run css && npm run js && npm run images"
   },
   "repository": {
