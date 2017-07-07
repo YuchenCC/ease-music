@@ -12,7 +12,7 @@ $next.appendTo($('.links'))
 $.get("JSON1\\song.json").then(function(response){
     let song = response.filter(object=>object.id === id)[0]
     let {url, name, lyric,albumImg,background} = song
-    let $albumImg = $('.disc-container>.disc>.cover').attr('src',song.albumImg)
+    let $albumImg = $('.disc-container>.disc>p>.cover').attr('src',song.albumImg)
     let $backgroundImg = $('.bgCover').css('background','transparent url(' + song.background + ') no-repeat center')
                                 .css('background-size','cover')
     initplay(song.url)

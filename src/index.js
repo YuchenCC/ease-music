@@ -3,8 +3,6 @@
  */
 require('./css/index.scss');
 
-
-
 $.get("JSON1\\song.json",function (response, request) {
     function initMusicList(response,number){
         let $lastestMusic = $('#lastestMusic')

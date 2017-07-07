@@ -28,35 +28,27 @@
       z-index: 5;
       transform: translate3D(-18%,0,0);
     }
-    .disc{
+    .disc {
       width: rem(296);
       height: rem(296);
       margin-top: rem(70);
       margin-left: auto;
       margin-right: auto;
-      position:relative;
-      z-index:1;
-      display:flex;
-      justify-content: center;
-      align-items: center;
-      .cover{
-        position:absolute;
-        width: rem(184);
-        height:rem(184);
-        z-index: 1;
-        animation: circle 20s infinite linear;
-        animation-play-state: paused;
-      }
-      div{
-        position:relative;
-        z-index: 3;
-        width:100%;
-        height:100%;
+      position: relative;
+      z-index: 1;
+      div {
+        position: absolute;
+        z-index: 5;
+        left: 50%;
+        top: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        width: 100%;
+        height: 100%;
         display:flex;
         justify-content: center;
         align-items: center;
-        .light{
-          position: absolute;
+        .light {
+          position: relative;
           width: 100%;
           z-index: 3;
           //transform: translate3D(-50%,-50%,0);
@@ -64,19 +56,45 @@
           animation-play-state: paused;
           //animation: circle 20s infinite linear;
         }
-        .ring{
-          position: absolute;
-          top:50%;
-          left:50%;
-          transform: translate3D(-50%,-50%,0);
-          width: 100%;
-          z-index: 2;
+        .animationActive {
+          animation-play-state: running;
         }
-        .animationActive{
+
+      }
+      p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        z-index: 1;
+        left: 50%;
+        top: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        width: 100%;
+        height: 100%;
+        .cover {
+          position: relative;
+          width: rem(184);
+          height: rem(184);
+          z-index: 1;
+          animation: circle 20s infinite linear;
+          animation-play-state: paused;
+          //transform-origdn:
+        }
+        .animationActive {
           animation-play-state: running;
         }
       }
 
+
+      .ring {
+        left: 50%;
+        top: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        position: absolute;
+        width: 100%;
+        z-index: 1;
+      }
       .icon-wrapper{
         position: absolute;
         top:50%;
