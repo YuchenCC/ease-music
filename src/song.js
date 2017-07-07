@@ -1,4 +1,4 @@
-require('./css/song.css');
+require('./css/song.scss');
 
 
 //  获取查询参数，识别播放音乐ID
@@ -50,68 +50,79 @@ function initplay(url){
     let audio = document.createElement('audio')
     audio.src = url
     audio.loop = false
-    audio.preload = 'auto'
+    let timer = null
     let $iconPlay = $(".icon-play")
     let $iconPause = $(".icon-pause")
     let $iconCover = $(".cover")
     let $iconLight = $(".light")
+    let $imitatePlay = $('#imitatePlay')
+    $imitatePlay.on('click',function () {
+        audio.preload = 'auto'
+        //console.log('$imitatePlay')
+    })
     $iconPlay.on('click',function(){
         audio.play()
+        console.log('play')
+
+    })
+    $iconPause.on('click',function(){
+        audio.pause()
+        console.log('pause')
+    })
+    audio.addEventListener("canplay",function () {
+        //console.log(audio.readyState)
+        $iconPlay.click()
+        console.log('canplay')
+    })
+    audio.addEventListener("playing",function () {
+        timer = setInterval(lyricScroll,500)
         $iconPlay.attr('class','icon icon-play ')
         $iconPause.attr('class','icon icon-pause svgActive')
         $iconCover.addClass('animationActive')
         $iconLight.addClass('animationActive')
+
     })
-    $iconPause.on('click',function(){
-        audio.pause()
+    audio.addEventListener("pause",function () {
         $iconPlay.attr('class','icon icon-play svgActive')
         $iconPause.attr('class','icon icon-pause')
         $iconCover.removeClass('animationActive')
         $iconLight.removeClass('animationActive')
+        clearInterval(timer)
     })
-    audio.addEventListener("canplaythrough",function () {
-        console.log(audio.readyState)
-        $iconPlay.click()
-    })
+
     audio.addEventListener("ended",function () {
         console.log('ended,next')
         window.location.href = $next.attr('href')
     })
-    //播放时间对应歌词滚动高亮
-    setInterval(function () {
+    function lyricScroll() {
         let $songLyricSpan = $('.song-description>.lyric>.lines>span')
-        let musicTime = parseInt(audio.currentTime,10)
-        $.map($songLyricSpan,function(span){
+        let musicTime = parseInt(audio.currentTime, 10)
+        $.map($songLyricSpan, function (span) {
             let spanTime = span.getAttribute('data-time')
-            if (!spanTime) {return}
-            let minites = parseInt(spanTime.match(/(\d*):(.*)/)[1],10)
-            let seconds = parseInt(spanTime.match(/(\d*):(.*)/)[2],10)
+            if (!spanTime) {
+                return
+            }
+            let minites = parseInt(spanTime.match(/(\d*):(.*)/)[1], 10)
+            let seconds = parseInt(spanTime.match(/(\d*):(.*)/)[2], 10)
             let time = minites * 60 + seconds
-            if ( time === musicTime){
+            if (time === musicTime) {
                 return changeLyric(spanTime)
-                }
+            }
 
         })
-        function changeLyric(spanTime){
+        function changeLyric(spanTime) {
             let $songLyric = $('.song-description>.lyric>.lines')
-            for(let i=0 ;i<$songLyricSpan.length;i++){
-                if($songLyricSpan.eq(i).attr('data-time') == spanTime) {
+            for (let i = 0; i < $songLyricSpan.length; i++) {
+                if ($songLyricSpan.eq(i).attr('data-time') == spanTime) {
                     //console.log(changeHeight)
-                    let changeHeight = Math.ceil($songLyricSpan.eq(i-1).outerHeight())
-                    if( i === 0){
-                        $songLyric.css('transform', `translateY(0)`)
-                    }else{
-                        let lasttrans = $songLyric.css('transform').match(/(.*,){5}\s*(.*)\)/)[2]
-                        console.log(lasttrans)
-                        console.log(changeHeight)
-                        $songLyric.css('transform', `translateY(${lasttrans-changeHeight}px)`)
-
-                        console.log($songLyric.css('transform'))
-                    }
                     $songLyricSpan.eq(i).addClass('lyricActive').siblings().removeClass('lyricActive')
-
+                    let changeHeight = - $songLyricSpan.eq(i).position().top
+                    $songLyric.css('transform', `translateY(${changeHeight}px)`)
                 }
             }
         }
-    },1000)
+
+        $imitatePlay.click()
+        //播放时间对应歌词滚动高亮
+    }
 }

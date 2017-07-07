@@ -35,9 +35,48 @@
       margin-left: auto;
       margin-right: auto;
       position:relative;
-      display: flex;
-      align-items: center;
+      z-index:1;
+      display:flex;
       justify-content: center;
+      align-items: center;
+      .cover{
+        position:absolute;
+        width: rem(184);
+        height:rem(184);
+        z-index: 1;
+        animation: circle 20s infinite linear;
+        animation-play-state: paused;
+      }
+      div{
+        position:relative;
+        z-index: 3;
+        width:100%;
+        height:100%;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        .light{
+          position: absolute;
+          width: 100%;
+          z-index: 3;
+          //transform: translate3D(-50%,-50%,0);
+          animation: circle 20s infinite linear;
+          animation-play-state: paused;
+          //animation: circle 20s infinite linear;
+        }
+        .ring{
+          position: absolute;
+          top:50%;
+          left:50%;
+          transform: translate3D(-50%,-50%,0);
+          width: 100%;
+          z-index: 2;
+        }
+        .animationActive{
+          animation-play-state: running;
+        }
+      }
+
       .icon-wrapper{
         position: absolute;
         top:50%;
@@ -53,47 +92,17 @@
         justify-content: center;
         align-items: center;
         svg{
-
           display:none;
           width: 50%;
           height: 50%;
           fill: white;
-
         }
         .svgActive{
           display: block;
         }
       }
-      .ring{
-        position: absolute;
-        top:50%;
-        left:50%;
-        transform: translate3D(-50%,-50%,0);
-        width: 100%;
-        z-index: 2;
-      }
-      .light{
-        position: absolute;
-        width: 100%;
-        z-index: 3;
-        top:50%;
-        left:50%;
-        transform: translate3D(-50%,-50%,0);
-        //animation: circle 20s infinite linear;
-        //animation-play-state: paused;
-        //animation: circle 20s infinite linear;
-
-      }
-      .cover{
-        width: rem(184);
-        height:rem(184);
-        z-index: 1;
-        animation: circle 20s infinite linear;
-        animation-play-state: paused;
-      }
       .animationActive{
         animation-play-state: running;
-
       }
     }
   }
@@ -125,7 +134,9 @@
         transition: all 0.5s;
         flex-shrink: 1;
         transform: translateY(0);
+        position: relative;
         span{
+          position: relative;
           display:block;
           flex-grow:1;
           font-size: rem(17);

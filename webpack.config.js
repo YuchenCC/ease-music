@@ -15,15 +15,21 @@ module.exports = {
   },
     module: {
         loaders:[
+            { test: /\.scss$/,loader:'style-loader!css-loader!autoprefixer-loader?browsers=last 6 versions!sass-loader'},
             { test: /\.css$/, loader: 'style-loader!css-loader!autoprefixer-loader?browsers=last 6 versions' },
             {
                 test: /\.js[x]?$/, exclude: /node_modules/, loader: 'babel-loader', options: {
-                presets: ['env'],
-                plugins: [require('babel-plugin-transform-object-rest-spread')]
+                    presets: ['env'],
+                    plugins: [require('babel-plugin-transform-object-rest-spread')]
+                }
             }
-            }
-            //{ test: /\.(png|jpg|gif)$/, loader: 'url-loader' }
+            // { test: /\.(png|jpg|gif)$/, loader: 'url-loader' }
         ]
+    },
+    devServer:{
+      contentBase: path.join(__dirname,"dist"),
+        compress: true,
+        port: 9080
     },
     plugins: [
         new uglifyJsPlugin({
@@ -31,12 +37,13 @@ module.exports = {
                 warnings: false
             }
         }),
-        new HtmlwebpackPlugin({
-            title: 'Webpack-demos',
-            filename: 'text.html'
-        }),
+        // new HtmlwebpackPlugin({
+        //     title: 'Webpack-demos',
+        //     filename: 'text.html'
+        // }),
         new OpenBrowserPlugin({
-            url: 'http://localhost:8080'
+            url: 'http://localhost:9080',
+           // contentBase: path.join(__dirname, 'dist')
         }),
         new webpack.ProvidePlugin({
             $: "jquery",

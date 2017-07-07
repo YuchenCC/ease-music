@@ -60,9 +60,9 @@ a {
   border-bottom: 0.01333rem solid #ccc; }
   .siteNav .tabItems {
     display: flex;
-    flex-shrink: 0; }
+    width: 100%; }
     .siteNav .tabItems li {
-      width: 3.33653rem;
+      width: 33.333333%;
       height: 1.06667rem;
       text-align: center;
       font-size: 0.4rem;
@@ -99,6 +99,7 @@ a {
     margin-left: 0.24rem; }
     .tabContent .home .playlists h2:before {
       content: '';
+      background: #D43C33;
       border: 0.02667rem solid #D43C33;
       left: 0;
       position: absolute;

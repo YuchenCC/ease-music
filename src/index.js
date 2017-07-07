@@ -1,43 +1,53 @@
 /**
  * Created by Administrator on 2017/6/27.
  */
-require('./css/index.css');
+require('./css/index.scss');
 
 
 
 $.get("JSON1\\song.json",function (response, request) {
-
-    +function () {        //生成最新音乐显示列表，以及热歌榜
-            let $lastestMusic = $('#lastestMusic')
-            response.map((object) => {
+    function initMusicList(response,number){
+        let $lastestMusic = $('#lastestMusic')
+        for(let i = 1;i < number+1;i++){
+            let song = response.filter(object=>object.id === i)[0]
+            let {name,id,singer} = song
+            //console.log($lastestMusic)
                 let $liHome = $(`<li>
-                        <a href="./song.html?id=${object.id}">
+                        <a href="./song.html?id=${song.id}">
                              <div>
-                                <h3>${object.name}</h3>
-                                <p>${object.singer}</p>
+                                <h3>${song.name}</h3>
+                                <p>${song.singer}</p>
                              </div>
                              <svg class="play">
                                 <use xlink:href="#icon-play-circled"></use>
                              </svg>
                         </a>
                     </li>`)
-                $liHome.appendTo($lastestMusic)
-                //动态生成热歌榜
-                let idHot
-                if (object.id < 10) {
-                    idHot = `0${object.id }`
-                }
-                else {
-                    idHot = `${object.id }`
-                }
-                let $liHot = $(`
+            $liHome.appendTo($lastestMusic)
+        }
+        let $lastestMusicLoading = $('#lastestMusicLoading')
+        $lastestMusicLoading.removeClass('active')  //移除加载GIF
+    }
+    function initHotList(response){
+        let array = []
+        for(let i = 0;i < response.length;i++) {  //动态生成热歌榜 8首
+            let song = response.filter(object => object.hot === i+1)[0]
+            let {name, hot, singer, id} = song
+            let idHot = i + 1
+            if (idHot < 10) {
+                idHot = `0${idHot}`
+            }
+            else {
+                idHot = `${idHot}`
+            }
+            let $liHot = $(`
                 <li>
-                    <div class="hotOrder">${idHot}</div>
+        
                     <div class="hotDetail">
-                        <a href="./song.html?id=${object.id}}">
+                        <a href="./song.html?id=${song.id}}">
                             <div>
-                                <h3>${object.name}</h3>
-                                <p>${object.singer}</p>
+                                <h3>${song.name}</h3>
+                                <p>${song.singer}</p>
                             </div>
                             <svg class="play">
                                 <use xlink:href="#icon-play-circled"></use>
@@ -45,14 +55,42 @@ $.get("JSON1\\song.json",function (response, request) {
                         </a>
                     </div>
                 </li>`)
-                $liHot.appendTo($('#hotMusic'))
-                $('#hotMusic').children().eq(0).find('.hotOrder').addClass('hotTop')
-                $('#hotMusic').children().eq(1).find('.hotOrder').addClass('hotTop')
-                $('#hotMusic').children().eq(2).find('.hotOrder').addClass('hotTop')
-                let $lastestMusicLoading = $('#lastestMusicLoading')
-                $lastestMusicLoading.removeClass('active')  //移除加载GIF
-            })
-        }();
+            let $hotOrder =$(`<div class="hotOrder">${idHot}</div>`)
+            if (i<3){
+                $hotOrder.addClass('hotTop')
+            }
+            $hotOrder.prependTo($liHot)
+            array.push($liHot)
+        }
+        let $lastestMusicLoading = $('#lastestMusicLoading')
+        $lastestMusicLoading.removeClass('active')  //移除加载GIF
+        //console.log(array)
+        return array
+    }
+    function showHotList(array,number,listLength){
+        let $hotMusicList = $('#hotMusic')
+        //console.log('init ='+ array.length)
+        for(let i=0;i<number;i++){
+            if($hotMusicList.children().length >= listLength){
+                $('.hotMusic>.more').text('没有更多')
+                //console.log('final='+array.length)
+                return
+            }
+            let $li = array.shift()
+            //console.log(array.length)
+            $li.appendTo($hotMusicList)
+        }
+
+    }
+    +function () {        //生成最新音乐显示列表，以及热歌榜
+        initMusicList(response,5)
+        let hotList = initHotList(response)
+        let listLength = hotList.length
+        showHotList(hotList,4,listLength)
+        $('.hotMusic>.more').on('click',function () {
+            showHotList(hotList,4,listLength)
+        })
+    }();
 
         +function () {    //监听nav点击变化
             let $nav = $('.tabItems')
@@ -61,6 +99,9 @@ $.get("JSON1\\song.json",function (response, request) {
                 let $click = $(e.currentTarget)
                 $click.addClass('active').siblings().removeClass('active')
                 let index = $click.index()
+                if (index === 2){
+                    initSearch()  //初始化搜索
+                }
                 $tabContent.children().removeAttr('hidden')
                 $tabContent.children().eq(index).show().siblings().hide()
             })
@@ -146,11 +187,11 @@ $.get("JSON1\\song.json",function (response, request) {
             let value
             if(arguments[0] === null){
                 value = ''
-                console.log('null')
+                //console.log('null')
             }
             else{
                 value = event.currentTarget.value.trim()
-                console.log('have')
+                //console.log('have')
             }
             if (value.length === 0) {
                 return initSearch()
@@ -197,7 +238,7 @@ $.get("JSON1\\song.json",function (response, request) {
             })
             if (n !== 1) {
                 searchRecordAll.push(searchRecord)
-                console.log('push'+ searchRecordAll)
+                //console.log('push'+ searchRecordAll)
                 localStorage.setItem('searchRecordAll', JSON.stringify(searchRecordAll));
             }
         }
@@ -206,14 +247,13 @@ function getlocalStorage(name){
     let temp = localStorage.getItem(name)
     if (temp === 'undefined'){
         temp = '[]'
-        console.log('none')
+        //console.log('none')
     }
     return JSON.parse(temp)
 }
 +function(){   //动态获取搜索历史
-    initSearch()
     let historySearch = getlocalStorage('searchRecordAll')
-    console.log(historySearch)
+    //console.log(historySearch)
     if (historySearch) {
         historySearch.forEach(string => {  //未做数组去重
             loadHistoryList(string)
@@ -222,15 +262,14 @@ function getlocalStorage(name){
     }
     $('.close').on('click',function(e){
         let key = $(e.currentTarget).siblings('a').children().children().text()
-        console.log(key)
+       // console.log(key)
         $(e.currentTarget).parent('li').remove()
         let historyDel = getlocalStorage('searchRecordAll')
         let afterDelKey = popKeyOfArray(historyDel,key)
         localStorage.setItem('searchRecordAll', JSON.stringify(afterDelKey));
-
     })
 }()
-
+//document.onload = initSearch();
 function popKeyOfArray(array, key) {   //删除数组中指定的关键字
         for(let i=0;i<array.length;i++) {
             if (array[i] === key) {
@@ -264,6 +303,8 @@ function loadHistoryList(string) {
     $li.appendTo($('.historySearch>ol'))
 }
 function initSearch() {
+    //console.log('init')
+    //console.log($)
     $('.hotSearch').show()
     $('.historySearch').show()
     $('.recomSearch').hide()

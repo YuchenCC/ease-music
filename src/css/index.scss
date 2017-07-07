@@ -75,17 +75,16 @@ a {
 
   .tabItems {
     display: flex;
-    flex-shrink: 0;
-
+    //flex-shrink: 0;
+    width: 100%;
     li {
-      width: rem(125.12);
+      width: 33.333333%;
       height: rem(40);
       text-align: center;
       font-size: rem(15);
       display: flex;
       align-items: center;
       justify-content: center;
-
     }
     .active {
       color: #D43C33;
@@ -117,6 +116,7 @@ a {
     .playlists {
       margin: rem(20) 0;
       h2 {
+
         font-weight: normal;
         font-size: rem(17);
         line-height: rem(20);
@@ -125,6 +125,7 @@ a {
         margin-left: rem(9);
         &:before {
           content: '';
+          background: #D43C33;
           border: rem(1) solid #D43C33;
           left: 0;
           position: absolute;
