@@ -46,7 +46,7 @@
     "static-files": "cp *.html build && mkdir build/JSON1 && cp json1/*.json build/json1",
     "js": "mkdir build/js && uglifyjs js/*.js > build/js/",
     "images": "imagemin img/* --out-dir=build/img",
-    "public": "webpack -p",
+    "publish": "webpack -p",
     "build": "npm run reset && npm run static-files && npm run css && npm run js && npm run images"
   },
   "repository": {
